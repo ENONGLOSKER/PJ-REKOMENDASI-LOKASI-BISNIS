@@ -1,0 +1,194 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocBis</title>
+    <link rel="shortcut icon" href="{% static 'img/bicon.svg"' %} type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="{%static 'img/favicon.svg'%}" rel="icon">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: url("{% static 'img/bgs.png' %}") center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home {
+            text-align: center;
+            padding: 0 16px;
+        }
+
+        #sub {
+            background: #AAFFD0;
+            color: #29A661;
+            border: 1px solid #29A661;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 9px;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: -10px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 10px 0;
+            text-transform: capitalize;
+        }
+
+        h1 span {
+            color: #229958;
+        }
+
+        p {
+            font-size: 10px;
+            margin: 10px auto 20px;
+            max-width: 400px;
+        }
+
+        a {
+            background: #000;
+            color: #fff;
+            padding: 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            display: inline-block;
+            box-shadow: 2px 5px 20px #29A661;
+            width: 40%;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            background: #187a44;
+            box-shadow: 5px 5px 40px #ffda91;
+        }
+
+        a:hover #icons {
+            transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
+            transform: translateY(4px) rotate(-60deg);
+        }
+
+        #icons {
+            width: 22px;
+            height: 22px;
+            transform: translateY(4px);
+            margin-right: 5px;
+        }
+
+        @media (min-width: 480px) {
+            #sub {
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+
+            p {
+                font-size: 14px;
+                max-width: 500px;
+            }
+
+            a {
+                padding: 10px 28px;
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #sub {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            p {
+                font-size: 16px;
+                max-width: 600px;
+            }
+
+            a {
+                padding: 12px 32px;
+                font-size: 18px;
+                width: 20%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .home {
+                padding: 0 220px;
+            }
+
+            h1 {
+                font-size: 60px;
+            }
+
+            p {
+                font-size: 18px;
+                max-width: 700px;
+            }
+
+            a {
+                padding: 14px 36px;
+                font-size: 18px;
+                width: 13%;
+            }
+
+            #icons {
+                width: 26px;
+                height: 26px;
+                transform: translateY(6px);
+            }
+        }
+
+
+        
+    </style>
+</head>
+
+<body>
+    <section class="hero">
+        <div class="home">
+             <span id="sub">Sistem Pendukung Keputusan Penentuan Lokasi Bisnis</span>
+            <h1>Temukan <span>lokasi yang akurat</span> untuk <span>tempat yang tepat</span></h1>
+            <p>Sistem ini membantu Anda memilih lokasi bisnis terbaik dengan mudah dan akurat, memastikan keputusan
+                tepat untuk kesuksesan usaha Anda.</p>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'dashboard' %}">
+                    <ion-icon name="chevron-forward-circle" id="icons"></ion-icon>
+                    Get Started
+                </a>
+            {% else %}
+                <a href="{% url 'signin' %}">
+                    <ion-icon name="chevron-forward-circle" id="icons"></ion-icon>
+                    Get Started
+                </a>
+            {% endif %}
+        </div>
+    </section>
+</body>
+
+<!-- cdn icon -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>

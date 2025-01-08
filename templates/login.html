@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocBis</title>
+    <link rel="shortcut icon" href="{% static 'img/bicon.svg"' %} type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="{%static 'img/favicon.svg'%}" rel="icon">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: url("{% static 'img/bgs.png' %}") center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    {%for message in messages%}
+    {% if message.tags == 'success' %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        var m = "{{message}}";
+        swal("Login", m, "success");
+    </script>
+    {%else%}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        var m = "{{message}}";
+        swal("Login", m, "error");
+    </script>
+    {% endif %}
+    {%endfor%}
+
+    <section class="hero">
+        <form action="" method="POST"
+            style="background-color: white; padding: 30px; display: flex; flex-direction: column; width: 25%; border-radius: 22px;">
+            {% csrf_token %}
+            <img src="{% static 'img/iconlog.svg' %}"
+                style="width: 100px; padding: 0; margin-bottom: -25px;">
+            <h2 style="font-size: 30px;">Sign in</h2>
+            <p style="text-transform: capitalize; margin-top: -30px; font-size: 14px; color: #187a44;">sistem pendukung
+                keputusan pemilihan lokasi bisnis</p>
+            <div class="field" style="display: flex; flex-direction: column; gap: 10px;">
+                <label for="username" style="font-size: 18px;">Username</label>
+                <input type="text" name="username" id="username" required placeholder="username"
+                    style="padding: 8px 14px; font-size: 18px; background-color: #AAFFD0; border-radius: 8px; border: 2px solid #229958;">
+                <label for="password" style="font-size: 18px;">Password</label>
+                <input type="text" name="password" id="password" required placeholder="password"
+                    style="padding: 8px 14px; font-size: 18px; background-color: #AAFFD0; border-radius: 8px; border: 2px solid #229958;">
+            </div>
+            <button
+                style="padding: 8px 12px; font-size: 20px; font-weight: 600; margin-top: 35px; background-color: black; color: white; border-radius: 50px;">Login</button>
+            <a href="{% url 'index' %}"
+                style="text-decoration: none; color: #000; text-align: center; margin-top: 15px;">Kembali ke halaman
+                <span style="font-weight: 500; color: #29A661;">Utama</span> </a>
+        </form>
+        <div class="home">
+        </div>
+    </section>
+</body>
+
+<!-- cdn icon -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>
