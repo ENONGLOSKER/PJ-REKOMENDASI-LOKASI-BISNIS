@@ -16,3 +16,4 @@ class KriteriaAdmin(ModelAdmin):
 admin.site.register(Alternatif)
 admin.site.register(Kriteria, KriteriaAdmin)
 admin.site.register(SubKriteria)
+admin.site.register(Penilaian)

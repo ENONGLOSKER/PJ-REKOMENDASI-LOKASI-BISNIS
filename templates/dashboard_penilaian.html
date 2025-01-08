@@ -1,0 +1,319 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block konten%}
+
+<div id="content">
+    <!-- Topbar -->
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+        <!-- Sidebar Toggle (Topbar) -->
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+        </button>
+
+        <div class="">
+            <h1 class="h3 mb-0 text-gray-800 font-weight-bold">DATA PENILAIAN</h1>
+        </div>
+
+        <!-- sweet alert -->
+        <!-- {%for message in messages%}
+        {% if message.tags == 'success' %}                     
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>                                            
+        <script>
+            var m="{{message}}";
+            swal("Login",m,"success");
+        </script>
+        {%else%}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>                                            
+        <script>
+            var m="{{message}}";
+            swal("Login",m,"danger");
+        </script>
+        {% endif %}
+        {%endfor%} -->
+
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                    aria-labelledby="searchDropdown">
+                    <form class="form-inline mr-auto w-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                        style="text-transform: capitalize;"></span>
+                    <img class="img-profile rounded-circle" src="{%static 'img/icon.png'%}">
+                </a>
+                <!-- Dropdown - User Information -->
+                <a class="scroll-to-top rounded" href="#page-top">
+                    <i class="fas fa-angle-up"></i>
+                </a>
+
+
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+                    <div class="dropdown-divider"></div>
+                    <a href="{% url 'signout' %}" onclick="return confirm('Apakah Anda yakin ingin keluar?')">
+                        {% csrf_token %}
+                        <button type="submit" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </button>
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+
+    </nav>
+    <!-- End of Topbar -->
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">
+                <h1>
+                    <a href="{% url 'dashboard_penilaian_add' %}"
+                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fas fa-plus fa-sm text-white-50"></i> Add Data
+                    </a>
+        </div>
+        <!-- penilaian -->
+        <div class="row mb-4">
+            <!-- Area tabel -->
+            <div class="col-xl-12 col-lg-9">
+                <div class="card shadow mb-UKM 4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Data Penilaian</h6>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th rowspan="2" class="align-middle text-center">NO</th>
+                                        <th rowspan="2" class="align-middle text-center">ALTERNATIF</th>
+                                        <th colspan="4" class="text-center">KRITERIA</th>
+                                        <th rowspan="2" class="align-middle text-center">ACTION</th>
+                                    </tr>
+                                    <tr>
+                                        <th>C1</th>
+                                        <th>C2</th>
+                                        <th>C3</th>
+                                        <th>C4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in data_penilaian %}
+                                    <tr class="text-center">
+                                        <td>{{ forloop.counter }}</td>
+                                        <td class="text-primary font-weight-bold">{{ data.alternatif }}</td>
+                                        <td>{{ data.c1 }}</td>
+                                        <td>{{ data.c2 }}</td>
+                                        <td>{{ data.c3 }}</td>
+                                        <td>{{ data.c4 }}</td>
+                                        <td>
+                                            <a href="{% url 'dashboard_penilaian_update' data.id %}"
+                                                class="btn btn-warning btn-icon-split mb-1 ">
+                                                <span class="icon text-white-25">
+                                                    <i class="fas fa-edit"></i>
+                                                </span>
+                                            </a>
+
+                                            <a href="{% url 'dashboard_penilaian_delete' data.id %}"
+                                                class="btn btn-danger btn-icon-split mb-1"
+                                                onclick="return confirm('yakin ingin menghapus data?')">
+                                                <span class="icon text-white-25">
+                                                    <i class="fas fa-trash"></i>
+                                                </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- tahap 1 -->
+        <div class="row mb-4">
+            <!-- Area tabel -->
+            <div class="col-xl-12 col-lg-9">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Tahap 01 menentukan pangkat</h6>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead class="text-center">
+                                    <tr style="text-transform: capitalize;">
+                                        <td>KETERANGAN</td>
+                                        {% for data in bobot %}
+                                        <td class="text-center">{{ data.nama }} ({{ data.jenis }})</td>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="">BOBOT AWAL</td>
+                                        {% for data in bobot %}
+                                        <td class="text-center">{{ data.bobot }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    <tr>
+                                        <td class="">HASIL BAGI</td>
+                                        {% for data in jlh_item_bobot %}
+                                        <td class="text-center">{{ data.bobot|floatformat:3 }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    <tr>
+                                    <tr>
+                                        <td class="bg-primary text-white">HASIL PANGKAT</td>
+                                        {% for nama, pangkat in hasil_pangkat.items %}
+                                        <td class="text-center">{{ pangkat }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- tahap 2 -->
+        <div class="row mb-4">
+            <!-- Area tabel -->
+            <div class="col-xl-12 col-lg-9">
+                <div class="card shadow mb-UKM 4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Tahap 02 menentukan Vector S</h6>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th rowspan="2" class="align-middle text-center">NO</th>
+                                        <th rowspan="2" class="align-middle text-center">ALTERNATIF</th>
+                                        <th colspan="4" class="text-center">KRITERIA</th>
+                                        <th rowspan="2" class="align-middle text-center bg-primary text-white">HASIL
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>C1</th>
+                                        <th>C2</th>
+                                        <th>C3</th>
+                                        <th>C4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in tabel_penilaian %}
+                                    <tr class="text-center">
+                                        <td>{{ forloop.counter }}</td>
+                                        <td class="text-primary font-weight-bold">{{ data.alternatif }}</td>
+                                        <td>{{ data.c1|floatformat:3 }}</td>
+                                        <td>{{ data.c2|floatformat:3 }}</td>
+                                        <td>{{ data.c3|floatformat:3 }}</td>
+                                        <td>{{ data.c4|floatformat:3 }}</td>
+                                        <td>{{ data.hasil|floatformat:3 }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- tahap 3 -->
+        <div class="row mb-4">
+            <!-- Area tabel -->
+            <div class="col-xl-12 col-lg-9">
+                <div class="card shadow mb-UKM 4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Tahap 03 menentukan Vector V</h6>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th rowspan="2" class="align-middle text-center">NO</th>
+                                        <th rowspan="2" class="align-middle text-center">ALTERNATIF</th>
+                                        <th rowspan="2" class="align-middle text-center">HASIL</th>
+                                        <th rowspan="2" class="align-middle text-center">REKOMENDASI</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in penilaian_data %}
+                                    <tr class="{{ item.background_color}} {{item.text_color}}">
+                                        <td class="text-center">{{ item.no }}</td>
+                                        <td class="text-center">{{ item.alternatif }}</td>
+                                        <td class="text-center">
+                                            {{ item.hasil|floatformat:2 }}
+                                        </td>
+                                        <td
+                                            class="text-center {% if item.rekomendasi == 'Direkomendasikan' %} bg-warning text-white{% endif %}">
+                                            {% if item.rekomendasi == 'Direkomendasikan' %}
+                                            {{ item.rekomendasi }}
+                                            <ion-icon name="checkmark-circle"
+                                                style="width: 28px; height: 28px; color: #70a830; transform: translateY(5px);"></ion-icon>
+                                            {% else %}
+                                            {{ item.rekomendasi }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% with penilaian_data|first as first_item %}
+        <h1 class="text-center" style="background-color: red; color: white; padding: 20px 15px;">
+            😍Rekomendasi Lokasi paling strategis <strong>{{ first_item.alternatif }}</strong> dengan nilai
+            {{first_item.hasil|floatformat:2}}
+        </h1>
+        {% endwith %}
+
+    </div>
+</div>
+
+{%endblock konten%}

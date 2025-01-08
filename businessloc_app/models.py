@@ -27,21 +27,13 @@ class SubKriteria(models.Model):
     def __str__(self):
         return f"{self.nilai}"
 
-# class Ekskul(models.Model):
-#     nama = models.CharField(max_length=100)
+class Penilaian(models.Model):
+    alternatif = models.ForeignKey(Alternatif, on_delete=models.CASCADE, related_name='penilaian_al')
+    c1 = models.ForeignKey(SubKriteria, on_delete=models.CASCADE, related_name='penilaian_c1', limit_choices_to={'kriteria__simbol': 'K1'})
+    c2 = models.ForeignKey(SubKriteria, on_delete=models.CASCADE, related_name='penilaian_c2', limit_choices_to={'kriteria__simbol': 'K2'})
+    c3 = models.ForeignKey(SubKriteria, on_delete=models.CASCADE, related_name='penilaian_c3', limit_choices_to={'kriteria__simbol': 'K3'})
+    c4 = models.ForeignKey(SubKriteria, on_delete=models.CASCADE, related_name='penilaian_c4', limit_choices_to={'kriteria__simbol': 'K4'})
 
-#     def __str__(self):
-#         return self.nama
-
-
-# class Penilaian(models.Model):
-#     alternatif = models.ForeignKey(Alternatif, on_delete=models.CASCADE, related_name='penilaian_al')
-#     ekskul = models.ForeignKey(Ekskul, on_delete=models.CASCADE, related_name='penilaian_ex')
-#     c1 = models.ForeignKey(SubKriteria, on_delete=models.CASCADE, related_name='penilaian_c1', limit_choices_to={'kriteria__simbol': 'C1'})
-#     c2 = models.ForeignKey(SubKriteria, on_delete=models.CASCADE, related_name='penilaian_c2', limit_choices_to={'kriteria__simbol': 'C2'})
-#     c3 = models.ForeignKey(SubKriteria, on_delete=models.CASCADE, related_name='penilaian_c3', limit_choices_to={'kriteria__simbol': 'C3'})
-#     c4 = models.ForeignKey(SubKriteria, on_delete=models.CASCADE, related_name='penilaian_c4', limit_choices_to={'kriteria__simbol': 'C4'})
-
-#     def __str__(self):
-#         return f"{self.alternatif.nama} - {self.ekskul.nama} (C1: {self.c1.nilai}, C2: {self.c2.nilai}, C3: {self.c3.nilai}, C4: {self.c4.nilai})"
+    def __str__(self):
+        return f"{self.alternatif.nama} - {self.ekskul.nama} (C1: {self.c1.nilai}, C2: {self.c2.nilai}, C3: {self.c3.nilai}, C4: {self.c4.nilai})"
     

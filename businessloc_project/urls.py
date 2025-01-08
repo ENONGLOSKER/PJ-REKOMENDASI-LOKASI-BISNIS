@@ -44,9 +44,12 @@ urlpatterns = [
     path('dashboard/alternatif/update/<int:id>/', views.dashboard_alternatif_update, name='dashboard_alternatif_update'),
     path('dashboard/alternatif/delete/<int:id>/', views.dashboard_alternatif_delete, name='dashboard_alternatif_delete'),
     path('dashboard/alternatif/delete-multiple/', views.dashboard_alternatif_delete_multiple, name='dashboard_alternatif_delete_multiple'),
-    # subkriteria
-    # path('dashboard/kriteria/', views.dashboard_kriteria, name='dashboard_kriteria'),
-
+    # penilaian
+    path('dashboard/penilaian/', views.dashboard_penilaian, name='dashboard_penilaian'),
+    path('dashboard/penilaian/add/', views.dashboard_penilaian_add, name='dashboard_penilaian_add'),
+    path('dashboard/penilaian/update/<int:id>/', views.dashboard_penilaian_update, name='dashboard_penilaian_update'),
+    path('dashboard/penilaian/delete/<int:id>/', views.dashboard_penilaian_delete, name='dashboard_penilaian_delete'),
+ 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
