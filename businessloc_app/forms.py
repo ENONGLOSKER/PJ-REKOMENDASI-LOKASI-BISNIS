@@ -50,15 +50,18 @@ class PenilaianForm(forms.ModelForm):
         # Filter untuk kolom C1 dan menampilkan nama namun saat disimpan akan mengambil nilainya
         self.fields['c1'].queryset = SubKriteria.objects.filter(kriteria__simbol='K1').order_by('nama')
         self.fields['c1'].label_from_instance = lambda obj: obj.nama
+        self.fields['c1'].label = Kriteria.objects.get(simbol='K1').nama
 
         # Filter untuk kolom C2 dan menampilkan nama namun saat disimpan akan mengambil nilainya
         self.fields['c2'].queryset = SubKriteria.objects.filter(kriteria__simbol='K2').order_by('nama')
         self.fields['c2'].label_from_instance = lambda obj: obj.nama
-
+        self.fields['c2'].label = Kriteria.objects.get(simbol='K2').nama
+        
         # Filter untuk kolom C3 dan menampilkan nama namun saat disimpan akan mengambil nilainya
         self.fields['c3'].queryset = SubKriteria.objects.filter(kriteria__simbol='K3').order_by('nama')
         self.fields['c3'].label_from_instance = lambda obj: obj.nama
-
+        self.fields['c3'].label = Kriteria.objects.get(simbol='K3').nama
         # Filter untuk kolom C4 dan menampilkan nama namun saat disimpan akan mengambil nilainya
         self.fields['c4'].queryset = SubKriteria.objects.filter(kriteria__simbol='K4').order_by('nama')
         self.fields['c4'].label_from_instance = lambda obj: obj.nama
+        self.fields['c4'].label = Kriteria.objects.get(simbol='K4').nama

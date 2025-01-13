@@ -18,7 +18,7 @@ def index(request):
 
 def signin_user(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('dashboard_alternatif')
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -28,7 +28,7 @@ def signin_user(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Login Berhasil')
-            return redirect('dashboard')
+            return redirect('dashboard_alternatif')
         else:
             messages.error(request, 'Username atau password salah.')
 
@@ -252,10 +252,10 @@ def dashboard_penilaian(request):
     total_semua_alternatif = sum(total_per_alternatif.values())  # Jumlahkan semua hasil total per alternatif
     for idx, item in enumerate(tabel_penilaian):
         hasil_per_alternatif = item['hasil'] / total_semua_alternatif  # Bagi setiap alternatif dengan hasil penjumlahan atau total tersebut
-        print('-----------------------------------')
-        print('hasil per alternatif :', hasil_per_alternatif)
-        print('item :', item['hasil'])
-        print('total semua alternatif :', total_semua_alternatif)
+        # print('-----------------------------------')
+        # print('hasil per alternatif :', hasil_per_alternatif)
+        # print('item :', item['hasil'])
+        # print('total semua alternatif :', total_semua_alternatif)
         
         penilaian_data.append({
             'no': idx + 1,
@@ -263,7 +263,7 @@ def dashboard_penilaian(request):
             'hasil': hasil_per_alternatif,
             'rekomendasi': None,  # Placeholder untuk rekomendasi
         })
-    print('penilaian_data :', penilaian_data)
+    # print('penilaian_data :', penilaian_data)
 
     # urutkan penilaian_data berdasrkan yang terbesar ke yang terkecil dan tambahkan kolom rekomendasi
     penilaian_data.sort(key=lambda x: x['hasil'], reverse=True)

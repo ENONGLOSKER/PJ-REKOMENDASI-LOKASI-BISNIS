@@ -120,22 +120,22 @@
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
                             <h6 class="m-0 font-weight-bold text-primary">Data Kriteria</h6>
                             <div class="d-flex gap-1 justify-content-between align-items-center" style="width: 175px;">
-                                <button class="btn btn-sm btn-danger" id="delete_checkbok">
+                                <!-- <button class="btn btn-sm btn-danger" id="delete_checkbok">
                                     <i class="fas fa-trash"></i>
                                     Delete
-                                </button>
-                                <a href="{% url 'dashboard_kriteria_add' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                </button> -->
+                                <!-- <a href="{% url 'dashboard_kriteria_add' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                         class="fas fa-plus fa-sm text-white-50"></i> Add Data
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                         <div class="card-body table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead class="text-center">
                                     <tr>
-                                        <th>
+                                        <!-- <th>
                                             <input type="checkbox" id="checkAll">
-                                        </th>
+                                        </th> -->
                                         <th>NO</th>
                                         <th>SIMBOL</th>
                                         <th>NAMA</th>
@@ -148,9 +148,9 @@
 
                                     {% for data in data_kriteria %}
                                     <tr style="text-transform: capitalize;">
-                                        <td class="text-center">
+                                        <!-- <td class="text-center">
                                             <input type="checkbox" class="rowCheckbox" value="{{ data.id }}">
-                                        </td>
+                                        </td> -->
                                         <td class="text-center">{{forloop.counter}}</td>
                                         <td><a href="">{{data.simbol}}</a></td>
                                         <td><a href="">{{data.nama}}</a></td>
@@ -174,13 +174,13 @@
                                                 </span>
                                             </a>
 
-                                            <a href="{% url 'dashboard_kriteria_delete' data.id %}"
+                                            <!-- <a href="{% url 'dashboard_kriteria_delete' data.id %}"
                                                 class="btn btn-danger btn-icon-split mb-1"
                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                                 <span class="icon text-white-25">
                                                     <i class="fas fa-trash"></i>
                                                 </span>
-                                            </a>
+                                            </a> -->
                                         </td>
 
                                     </tr>
