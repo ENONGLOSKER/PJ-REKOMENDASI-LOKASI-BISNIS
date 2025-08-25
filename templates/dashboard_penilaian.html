@@ -200,7 +200,7 @@
                                     <tr>
                                         <td class="bg-primary text-white">HASIL PANGKAT</td>
                                         {% for nama, pangkat in hasil_pangkat.items %}
-                                        <td class="text-center">{{ pangkat }}</td>
+                                        <td class="text-center">{{ pangkat|floatformat:3 }}</td>
                                         {% endfor %}
                                     </tr>
                                     </tr>
